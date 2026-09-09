@@ -1,2 +1,7 @@
-heatingmat:
+ble_heatingmat:
   mac_address: "EF:E1:70:4D:03:87"
+  init_packet_hex: "a55affff"
+  service_uuid: "0000ff01-0000-1000-8000-00805f9b34fb"
+  char_set_uuid: "0000ff10-0000-1000-8000-00805F9B34FB"
+  char_temp_uuid: "0000ff20-0000-1000-8000-00805F9B34FB"
+  char_timer_uuid: "0000ff30-0000-1000-8000-00805F9B34FB"
