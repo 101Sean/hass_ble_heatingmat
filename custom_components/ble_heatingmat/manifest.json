@@ -1,5 +1,5 @@
 {
-  "domain": "heatingmat",
+  "domain": "ble_heatingmat",
   "name": "Smart Heating Mat",
   "documentation": "",
   "dependencies": [],
