@@ -4,10 +4,7 @@ from homeassistant.core import HomeAssistant
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.discovery import async_load_platform
 
-from .const import (
-    DOMAIN, CONF_MAC_ADDRESS, CONF_INIT_PACKET,
-    CONF_SERVICE_UUID, CONF_CHAR_SET, CONF_CHAR_TEMP, CONF_CHAR_TIMER
-)
+from .const import DOMAIN, CONF_MAC_ADDRESS, CONF_INIT_PACKET, CONF_SERVICE_UUID, CONF_CHAR_SET, CONF_CHAR_TEMP, CONF_CHAR_TIMER
 from .ble_manager import HeatingMatBLEManager
 
 _LOGGER = logging.getLogger(__name__)
@@ -28,8 +25,6 @@ async def async_setup(hass: HomeAssistant, config: dict):
         return True
 
     conf = config[DOMAIN]
-    
-    # 설정값 추출
     config_data = {
         "mac_address": conf[CONF_MAC_ADDRESS],
         "init_packet": conf[CONF_INIT_PACKET],
@@ -42,7 +37,7 @@ async def async_setup(hass: HomeAssistant, config: dict):
     manager = HeatingMatBLEManager(hass, config_data)
     hass.data.setdefault(DOMAIN, manager)
 
-    for platform in ["switch", "climate", "number"]:
+    for platform in ["climate", "number", "switch"]:
         hass.async_create_task(
             async_load_platform(hass, platform, DOMAIN, {}, config)
         )

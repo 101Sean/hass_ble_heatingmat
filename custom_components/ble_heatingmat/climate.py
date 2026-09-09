@@ -1,7 +1,5 @@
 from homeassistant.components.climate import ClimateEntity
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature, HVACMode, HVACAction
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode, HVACAction
 from homeassistant.const import UnitOfTemperature
 from .const import DOMAIN
 
@@ -12,7 +10,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 class HeatingMatClimate(ClimateEntity):
     def __init__(self, manager):
         self.manager = manager
-        self._attr_name = "Heating Mat Thermostat"
+        self._attr_name = "Heating Mat"
         self._attr_unique_id = f"{manager.mac_address}_climate"
         self._attr_temperature_unit = UnitOfTemperature.CELSIUS
         self._attr_supported_features = ClimateEntityFeature.TARGET_TEMPERATURE
@@ -21,6 +19,15 @@ class HeatingMatClimate(ClimateEntity):
         self._attr_max_temp = 42
         self._attr_target_temperature_step = 1
         self.manager.register_callback(self.async_write_ha_state)
+
+    @property
+    def device_info(self):
+        return {
+            "identifiers": {(DOMAIN, self.manager.mac_address)},
+            "name": "Smart Heating Mat",
+            "manufacturer": "Custom BLE",
+            "model": "Heating Mat",
+        }
 
     @property
     def hvac_mode(self):

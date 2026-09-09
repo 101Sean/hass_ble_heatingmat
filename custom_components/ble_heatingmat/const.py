@@ -9,3 +9,5 @@ CONF_CHAR_TIMER = "char_timer_uuid"
 
 TEMP_LEVEL_MAP = {0: 0, 36: 1, 37: 2, 38: 3, 39: 4, 40: 5, 41: 6, 42: 7}
 LEVEL_TEMP_MAP = {0: 0, 1: 36, 2: 37, 3: 38, 4: 39, 5: 40, 6: 41, 7: 42}
+
+DEFAULT_HEAT_TEMP = 38

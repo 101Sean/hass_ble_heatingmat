@@ -18,6 +18,12 @@ class HeatingMatTimer(NumberEntity):
         self.manager.register_callback(self.async_write_ha_state)
 
     @property
+    def device_info(self):
+        return {
+            "identifiers": {(DOMAIN, self.manager.mac_address)},
+        }
+
+    @property
     def native_value(self):
         return self.manager.state["timer_hours"]
 
